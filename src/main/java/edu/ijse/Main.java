@@ -7,7 +7,7 @@ import org.hibernate.Transaction;
 
 public class Main {
     public static void main(String[] args) {
-        getCus();
+        deleteCus();
     }
 
     public static void  getCus(){
@@ -20,7 +20,7 @@ public class Main {
     public static void saveCUs(){
         Session session=FactoryConfiguration.getInstance().getSession();
         Customer customer=new Customer();
-        customer.setName("hime");
+        customer.setName("himesh");
         Transaction transaction=session.beginTransaction();
         session.persist(customer);
         transaction.commit();
@@ -29,9 +29,17 @@ public class Main {
     public static void updateCus(){
         Session session=FactoryConfiguration.getInstance().getSession();
         Customer customer=session.get(Customer.class,1);
-        customer.setName("hime");
+        customer.setName("himeh");
         Transaction transaction=session.beginTransaction();
-        session.update(customer);
+        session.merge(customer);
+        transaction.commit();
+        session.close();
+    }
+    public static void deleteCus(){
+        Session session=FactoryConfiguration.getInstance().getSession();
+        Customer customer=session.get(Customer.class,1);
+        Transaction transaction=session.beginTransaction();
+        session.remove(customer);
         transaction.commit();
         session.close();
     }
