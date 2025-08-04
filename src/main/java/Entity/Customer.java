@@ -1,12 +1,10 @@
 package Entity;
 
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import org.hibernate.annotations.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name="customer_table")
+@Table(name = "customer")
 public class Customer {
     @Id
     @GeneratedValue
